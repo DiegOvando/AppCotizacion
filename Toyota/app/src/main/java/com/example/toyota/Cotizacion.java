@@ -1,11 +1,11 @@
 package com.example.toyota;
 
 public class Cotizacion {
-    public int numCotizacion;
-    public String descripcion;
-    public int precio;
-    public int porPagoInicial;
-    public int plazo;
+    private int numCotizacion;
+    private String descripcion;
+    private int precio;
+    private int porPagoInicial;
+    private int plazo;
 
     //Constructores
 

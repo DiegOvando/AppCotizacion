@@ -1,7 +1,9 @@
 package com.example.toyota;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     Cotizacion cotizacion = new Cotizacion();
 
-    private Button btnGenerar;
+    private Button btnGenerar, btnCerrar;
     private TextView lblCotizacion, lblNum, lblDescripcion, lblPrecio, lblPorcentajePago,lblPlazo,
                      lblPagoInicial, lblTotalFinanciar, lblPagoMensual;
     private EditText txtNum, txtDescripcion, txtPrecio, txtPorcentajePago, txtPlazo;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnCerrar = (Button) findViewById(R.id.btnCerrar);
         btnGenerar = (Button) findViewById(R.id.btnGenerar);
         lblCotizacion = (TextView) findViewById(R.id.lblCotizacion);
         lblNum = (TextView) findViewById(R.id.lblNum);
@@ -93,6 +96,28 @@ public class MainActivity extends AppCompatActivity {
                     lblTotalFinanciar.setText("Total a financiar: " + cotizacion.calcularTotalFinanciar());
                     lblPagoMensual.setText("Pago mensual: " + cotizacion.calcularPagoMensual());
                 }
+            }
+        });
+
+        btnCerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder confirmar = new AlertDialog.Builder(MainActivity.this);
+                confirmar.setTitle("¿Cerrar app?");
+                confirmar.setMessage("Se descartara toda la informacion");
+                confirmar.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                confirmar.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Nariz
+                    }
+                });
+                confirmar.show();
             }
         });
     }
